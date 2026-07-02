@@ -1,0 +1,2 @@
+Drop your studio images (logo, character keyart, project covers) into this folder.
+You can then reference them in your components using path: "/images/your-image.png"
