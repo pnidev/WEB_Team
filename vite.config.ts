@@ -8,4 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  base: '/WEB_Team/', // <--- THÊM CHÍNH XÁC DÒNG NÀY ĐỂ ĐỊNH TUYẾN TRÊN GITHUB PAGES
 })
