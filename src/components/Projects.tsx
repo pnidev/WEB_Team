@@ -178,7 +178,7 @@ const ProjectCard: React.FC<{
 
         {/* Cover Image */}
         <img
-          src={project.coverUrl}
+          src={`${import.meta.env.BASE_URL}${project.coverUrl.slice(1)}`}
           alt={project.title}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 z-10 ${
             isHovered ? 'opacity-0 pointer-events-none' : 'opacity-100'
@@ -192,7 +192,7 @@ const ProjectCard: React.FC<{
           loop
           muted
           playsInline
-          src={project.videoUrl}
+          src={`${import.meta.env.BASE_URL}${project.videoUrl.slice(1)}`}
         />
 
         {/* Play Icon Hint Overlay on Mobile */}

@@ -21,7 +21,7 @@ export const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-[#08080c] via-transparent to-transparent z-10 pointer-events-none" />
         <img
           className="w-full h-full object-cover animate-slow-zoom"
-          src="/images/bg.png"
+          src={`${import.meta.env.BASE_URL}images/bg.png`}
           alt="Trix Studio Background"
         />
       </div>

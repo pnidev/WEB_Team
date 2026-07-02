@@ -49,7 +49,7 @@ export const Header: React.FC = () => {
             onClick={(e) => handleNavClick(e, '#home')}
             className="flex items-center group"
           >
-            <img src="/images/logo_studio.png" alt="Trix Studio Logo" className="h-20 w-auto object-contain" />
+            <img src={`${import.meta.env.BASE_URL}images/logo_studio.png`} alt="Trix Studio Logo" className="h-20 w-auto object-contain" />
           </a>
 
           {/* Desktop Nav Links */}

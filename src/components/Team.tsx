@@ -98,7 +98,7 @@ export const Team: React.FC = () => {
                   <div className="absolute bottom-2 right-2 w-2 h-2 border-b border-r border-white/20" />
                   
                   <img
-                    src={member.imageUrl}
+                    src={`${import.meta.env.BASE_URL}${member.imageUrl.slice(1)}`}
                     alt={member.name}
                     className={`w-full h-full ${member.scaleClass} object-contain transition-transform duration-500 group-hover:scale-[1.3]`}
                   />
