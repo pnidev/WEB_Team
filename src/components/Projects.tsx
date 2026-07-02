@@ -15,6 +15,7 @@ interface GameProject {
   youtubeUrl?: string;
   facebookUrl?: string;
   steamUrl?: string;
+  itchUrl?: string;
   status: string;
   platforms: string[];
   showcaseId: string;
@@ -34,6 +35,7 @@ export const Projects: React.FC = () => {
       coverUrl: '/images/project1 copy.png',
       videoUrl: '/images/project1.mp4',
       youtubeUrl: 'https://www.youtube.com/watch?si=xGAhZcoN7CPmQHOd&v=Q2yGKpo7Cyg&feature=youtu.be',
+      itchUrl: 'https://xpnhi023gmailcom.itch.io/lone-scavenger',
       status: 'Released',
       platforms: ['PC'],
       showcaseId: 'lone-scavenger',
@@ -53,6 +55,18 @@ export const Projects: React.FC = () => {
       platforms: ['PC', 'Steam'],
       showcaseId: 'diary-white',
     },
+  ];
+
+  const loneScavengerImages = [
+    '01.gif', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '6_.gif',
+    '7.png', '8.png', '9.png', '9_.gif', '10.png', '11.png', '12.png', '13.png',
+    '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png',
+    '22.png', '22_.gif', '23.png', '24.png'
+  ];
+
+  const diaryWhiteImages = [
+    '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png',
+    '9.png', '10.png', '11.png', '11_.png', '12.png'
   ];
 
   return (
@@ -88,31 +102,45 @@ export const Projects: React.FC = () => {
 
       {/* Showcase Sub-page Overlay */}
       {activeShowcase && (
-        <div className="fixed inset-0 bg-valorant-dark z-50 overflow-y-auto px-6 py-20 flex flex-col justify-center items-center">
+        <div className="fixed inset-0 bg-valorant-dark z-50 overflow-y-auto">
+          {/* Close Button */}
           <button 
             onClick={() => setActiveShowcase(null)}
-            className="absolute top-6 right-6 p-3 bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-all cursor-none interactive-hover"
+            className="fixed top-6 right-6 p-3 bg-black/60 hover:bg-riot-red/90 border border-white/10 text-white transition-all cursor-none interactive-hover rounded-none z-[60] backdrop-blur-sm"
             aria-label="Close Showcase"
           >
             <X size={24} />
           </button>
-          <div className="max-w-4xl w-full text-center space-y-8">
-            <h2 className="font-display text-4xl sm:text-6xl font-black text-white uppercase tracking-tight">
-              {activeShowcase === 'lone-scavenger' ? 'LONE SCAVENGER' : 'DIARY: WHITE'}
-            </h2>
-            <span className="font-mono text-xs text-yellow-500 uppercase tracking-widest block">
-              // SHOWCASE SUB-PAGE
-            </span>
-            <p className="text-gray-400 text-lg sm:text-xl font-light leading-relaxed max-w-2xl mx-auto">
-              Showcase content is currently being prepared. We will update this showcase screen with level breakdowns, asset galleries, and mechanic analyses shortly.
-            </p>
-            <button
-              onClick={() => setActiveShowcase(null)}
-              className="px-8 py-3.5 riot-btn riot-btn-red font-mono text-xs uppercase tracking-widest active:scale-95 cursor-none interactive-hover mx-auto block"
-            >
-              Back to Projects
-            </button>
-          </div>
+
+          {activeShowcase === 'lone-scavenger' ? (
+            <div className="w-full max-w-[1200px] mx-auto flex flex-col items-center">
+              <div className="w-full flex flex-col">
+                {loneScavengerImages.map((img) => (
+                  <img
+                    key={img}
+                    src={`${import.meta.env.BASE_URL}images/LONE SCAVENGER/${img}`}
+                    alt={img}
+                    className="w-full h-auto block"
+                    loading="lazy"
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className="w-full max-w-[1200px] mx-auto flex flex-col items-center">
+              <div className="w-full flex flex-col">
+                {diaryWhiteImages.map((img) => (
+                  <img
+                    key={img}
+                    src={`${import.meta.env.BASE_URL}images/DIARY_ WHITE/${img}`}
+                    alt={img}
+                    className="w-full h-auto block"
+                    loading="lazy"
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </section>
@@ -195,8 +223,10 @@ const ProjectCard: React.FC<{
           src={`${import.meta.env.BASE_URL}${project.videoUrl.slice(1)}`}
         />
 
-        {/* Play Icon Hint Overlay on Mobile */}
-        <div className="absolute inset-0 z-20 bg-black/20 flex items-center justify-center pointer-events-none opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+        {/* Play Icon Hint Overlay */}
+        <div className={`absolute inset-0 z-20 bg-black/20 flex items-center justify-center pointer-events-none transition-opacity duration-300 ${
+          isHovered ? 'opacity-0' : 'opacity-100'
+        }`}>
           <div className="p-3 bg-riot-dark/95 border border-white/15 rounded-none text-riot-red backdrop-blur">
             <PlayCircle size={24} className="animate-pulse" />
           </div>
@@ -217,7 +247,7 @@ const ProjectCard: React.FC<{
         </p>
 
         {/* Core Attributes */}
-        <div className="grid grid-cols-2 gap-4 pb-6 border-b border-white/5 mb-6 text-xs font-mono">
+        <div className="grid grid-cols-3 gap-4 pb-6 border-b border-white/5 mb-6 text-xs font-mono">
           <div>
             <span className="text-gray-500 block uppercase tracking-wider mb-1">Engine</span>
             <span className="text-white block font-medium">{project.engine}</span>
@@ -229,10 +259,6 @@ const ProjectCard: React.FC<{
           <div>
             <span className="text-gray-500 block uppercase tracking-wider mb-1">Period</span>
             <span className="text-white block font-medium">{project.period}</span>
-          </div>
-          <div>
-            <span className="text-gray-500 block uppercase tracking-wider mb-1">Role</span>
-            <span className="text-white block font-medium truncate">Game Design & Dev</span>
           </div>
         </div>
 
@@ -253,6 +279,17 @@ const ProjectCard: React.FC<{
               className="px-6 py-2.5 border border-yellow-500/30 hover:border-yellow-500 text-yellow-500 hover:text-white hover:bg-yellow-500/10 transition-all duration-300 font-mono text-xs uppercase tracking-widest font-medium cursor-none interactive-hover"
             >
               YouTube
+            </a>
+          )}
+
+          {project.itchUrl && (
+            <a
+              href={project.itchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2.5 border border-yellow-500/30 hover:border-yellow-500 text-yellow-500 hover:text-white hover:bg-yellow-500/10 transition-all duration-300 font-mono text-xs uppercase tracking-widest font-medium cursor-none interactive-hover"
+            >
+              Itch.io
             </a>
           )}
 
