@@ -130,13 +130,24 @@ export const Projects: React.FC = () => {
             <div className="w-full max-w-[1200px] mx-auto flex flex-col items-center">
               <div className="w-full flex flex-col">
                 {diaryWhiteImages.map((img) => (
-                  <img
-                    key={img}
-                    src={`${import.meta.env.BASE_URL}images/DIARY_ WHITE/${img}`}
-                    alt={img}
-                    className="w-full h-auto block"
-                    loading="lazy"
-                  />
+                  <div key={img} className="relative w-full">
+                    <img
+                      src={`${import.meta.env.BASE_URL}images/DIARY_ WHITE/${img}`}
+                      alt={img}
+                      className="w-full h-auto block"
+                      loading="lazy"
+                    />
+                    {img === '11_.png' && (
+                      <a
+                        href="https://vimeo.com/1203217211?share=copy&fl=sv&fe=ci"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute bottom-[calc(10%+30px)] left-1/2 -translate-x-1/2 px-4 py-2 bg-[#b02b8c] hover:bg-white text-white hover:text-[#b02b8c] border border-transparent hover:border-[#b02b8c] transition-all duration-300 font-mono text-[10px] uppercase tracking-widest font-bold cursor-none interactive-hover shadow-lg"
+                      >
+                        VIEW TEASER
+                      </a>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>
